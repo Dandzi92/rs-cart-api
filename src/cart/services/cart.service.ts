@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/shared/prisma.service';
 
 import { v4 } from 'uuid';
 
@@ -6,6 +7,7 @@ import { Cart } from '../models';
 
 @Injectable()
 export class CartService {
+  constructor(private prisma: PrismaService) {}
   private userCarts: Record<string, Cart> = {};
 
   findByUserId(userId: string): Cart {
